@@ -22,8 +22,11 @@ const signup= async(req,res)=>{
 }
 
 const signin = async (req, res) => { 
+    
+    const {email} = req.body;
+
     try {
-        const user = await User.findOne({ "email": req.body.email }) 
+        const user = await User.findOne({ "email": email }) 
         
         if (!user){
             return res.status('401').json({ error: "User not found" }) 
@@ -55,24 +58,5 @@ const signout = (req, res) => {
     }
 
 
-// const requireSignin = expressjwt({ 
-//         secret: config.jwtSecret, 
-//         userProperty: 'auth',
-//         algorithms: ["HS256"],
-
-//         })
-
-        // const hasAuthorization = async (req, res, next) => { 
-        //     const user=await User.findById(req.params.id);
-        
-            
-        //         const authorized = req.auth && user._id ==  req.auth._id 
-                
-        //         if (!(authorized)) {
-        //             return res.status('403').json({ error: "User is not authorized" }) 
-        //             } 
-        //         next()
-        //     }
-    
 
 module.exports ={ signup,signin, signout}

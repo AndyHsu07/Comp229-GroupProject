@@ -14,9 +14,12 @@ router.route('/api/users')
 router.route('/api/users/:id')
     .get(requireSignin)
     .get(hasAuthorization)
-    .get(userCtrl.getAllUsers)
+    .get(userCtrl.getUser)
 
-
+router.route('/api/users/:id')
+    .get(requireSignin)
+    .get(hasAuthorization)
+    .patch(userCtrl.updateUser)
 
 
 

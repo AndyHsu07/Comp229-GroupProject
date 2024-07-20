@@ -53,16 +53,20 @@ const signout = (req, res) => {
         res.clearCookie("t")
         return res.status('200').json({ message: "signed out"}) 
     }
-    
+
+
 const requireSignin = expressjwt({ 
         secret: config.jwtSecret, 
         userProperty: 'auth',
-        algorithms: ["HS256"]
+        algorithms: ["HS256"],
 
         })
 
-const hasAuthorization = (req, res, next) => { 
-        const authorized = req.profile && req.auth && req.profile._id ==  req.auth._id 
+const hasAuthorization = async (req, res, next) => { 
+    
+    const user=await User.findById(req.params.id);
+        const authorized = req.auth && user._id ==  req.auth._id 
+        // console.log(authorized);
         if (!(authorized)) {
             return res.status('403').json({ error: "User is not authorized" }) 
             } 
@@ -70,4 +74,4 @@ const hasAuthorization = (req, res, next) => {
     }
     
 
-module.exports ={ signup,signin, signout, requireSignin, hasAuthorization }
+module.exports ={ signup,signin, signout,requireSignin, hasAuthorization }

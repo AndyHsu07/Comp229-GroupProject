@@ -2,10 +2,8 @@ const User=require('../model/UserModel');
 const mongoose=require('mongoose');
 
 //get user
-const getUser= async (req,res)=>{
+const getAllUsers= async (req,res)=>{
     const {id}=req.params;
-    
-
     
 
     console.log(id);
@@ -26,4 +24,4 @@ const getUser= async (req,res)=>{
 }
 
 
-module.exports={getUser};
+module.exports={getAllUsers};

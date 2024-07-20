@@ -2,15 +2,18 @@ const express=require('express');
 const router=express.Router();
 const authCtrl=require('../controller/auth.controller');
 const userCtrl=require('../controller/user.controller');
+const requireSignin=require('../middleware/requireSignin');
+const hasAuthorization=require('../middleware/hasAuthorization');
+
 
 router.route('/api/users')
-    .get(authCtrl.requireSignin)
-    .get(authCtrl.hasAuthorization)
+    .get(requireSignin)
+    .get(hasAuthorization)
     .get(userCtrl.getAllUsers)
 
 router.route('/api/users/:id')
-.get(authCtrl.requireSignin)
-.get(authCtrl.hasAuthorization)
+    .get(requireSignin)
+    .get(hasAuthorization)
     .get(userCtrl.getAllUsers)
 
 

@@ -55,23 +55,24 @@ const signout = (req, res) => {
     }
 
 
-const requireSignin = expressjwt({ 
-        secret: config.jwtSecret, 
-        userProperty: 'auth',
-        algorithms: ["HS256"],
+// const requireSignin = expressjwt({ 
+//         secret: config.jwtSecret, 
+//         userProperty: 'auth',
+//         algorithms: ["HS256"],
 
-        })
+//         })
 
-const hasAuthorization = async (req, res, next) => { 
+        // const hasAuthorization = async (req, res, next) => { 
+        //     const user=await User.findById(req.params.id);
+        
+            
+        //         const authorized = req.auth && user._id ==  req.auth._id 
+                
+        //         if (!(authorized)) {
+        //             return res.status('403').json({ error: "User is not authorized" }) 
+        //             } 
+        //         next()
+        //     }
     
-    const user=await User.findById(req.params.id);
-        const authorized = req.auth && user._id ==  req.auth._id 
-        // console.log(authorized);
-        if (!(authorized)) {
-            return res.status('403').json({ error: "User is not authorized" }) 
-            } 
-        next()
-    }
-    
 
-module.exports ={ signup,signin, signout,requireSignin, hasAuthorization }
+module.exports ={ signup,signin, signout}

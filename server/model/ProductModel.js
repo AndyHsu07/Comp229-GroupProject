@@ -9,9 +9,13 @@ const ProductSchema = new Schema({
         trim: true,
         required: 'Product name is required',
     },
+    quantity: {
+        type: Number,
+        required: "Quantity is required"
+    },
     price: {
         type: Number,
-        reqiored: 'Price is required'
+        required: 'Price is required'
     },
     Description: {
         type: String,

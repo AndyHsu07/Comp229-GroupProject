@@ -68,7 +68,7 @@ const ProductForm =()=>{
                 value={description} />
 
             <button>Add Product</button>
-            {error && <div>{error}</div>}
+            {error && <div className='error'>{error}</div>}
         </form>
     )
 }

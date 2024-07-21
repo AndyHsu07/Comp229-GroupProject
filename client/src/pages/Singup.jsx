@@ -13,7 +13,7 @@ const Singup=()=>{
 
         const user= {email, name, password};
 
-        const response= await fetch("http://localhost:5002/auth/signup",{
+        const response= await fetch("http://localhost:5001/auth/signup",{
             method: 'POST',
             body: JSON.stringify(user),
             headers:{
@@ -47,7 +47,7 @@ const Singup=()=>{
                     <input type="text" placeholder="name" id="name" onChange={(e)=>setName(e.target.value)}  value={name}/>
                     </div>
                     <div className="field">
-                        <input type="text" placeholder="password" id="password" onChange={(e)=>setPwd(e.target.value)}  value={password}/>
+                        <input type="password" placeholder="password" id="password" onChange={(e)=>setPwd(e.target.value)}  value={password}/>
                     </div>
                     <button>Sign up</button>
                     

@@ -1,12 +1,14 @@
 const express= require('express');
 const app=express();
-const config=require('./server/config/config');
+const config=require('./config/config');
 const mongoose=require('mongoose');
-const authRoute=require('./server/router/auth.routes');
-const userRoute=require('./server/router/user.routes');
-const productRoute=require('./server/router/product.route');
+const authRoute=require('./router/auth.routes');
+const userRoute=require('./router/user.routes');
+const productRoute=require('./router/product.route');
+const cors =require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/",authRoute);
 app.use("/", userRoute);

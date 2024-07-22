@@ -13,7 +13,8 @@ router.route('/api/products')
     .get(productCtrl.getAllProducts);
 
 router.route('/api/products/:id')
-    .get(productCtrl.getProduct);
+    .get(productCtrl.getProduct)
+    .get(productCtrl.deleteProduct);
 
 
 router.route('/api/products/:id')

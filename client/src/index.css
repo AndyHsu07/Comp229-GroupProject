@@ -48,6 +48,16 @@ header a {
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
+.product-details button{
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 5px;
+  margin: 10px 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
 .product-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;

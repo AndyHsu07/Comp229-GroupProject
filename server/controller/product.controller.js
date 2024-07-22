@@ -1,3 +1,4 @@
+const { default: Product } = require('../../client/src/pages/Product');
 const Product=require('../model/ProductModel');
 const mongoose=require('mongoose');
 
@@ -30,11 +31,11 @@ const getProduct= async (req,res)=>{
     
     
     if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(404).json({error: 'User not found'})
+            return res.status(404).json({error: 'Product not found'})
         }
     const product=await Product.findById({_id: id});
     if(!product){
-        return res.status(404).json({error: 'User not found'});
+        return res.status(404).json({error: 'Product not found'});
     }
         return res.status('200').json(product);
     
@@ -47,7 +48,7 @@ const updateProduct= async(req, res)=>{
     const {id}= req.params;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: 'User not found'})
+        return res.status(404).json({error: 'Product not found'})
 
     }
 
@@ -59,4 +60,20 @@ const updateProduct= async(req, res)=>{
 }
 
 
-module.exports={createProduct, getAllProducts, getProduct, updateProduct};
+const deleteProduct = async( req,res )=>{
+    const {id}= req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'Product not found'})
+    }
+
+    const product = await Product.findByIdAndDelete(id);
+    if(!product){
+        return res.status(404).json({error: 'Product not found'})
+    }
+
+    res.status(200).json({message: "The product is delted successfully"})
+}
+
+
+module.exports={createProduct, getAllProducts, getProduct, updateProduct ,deleteProduct};

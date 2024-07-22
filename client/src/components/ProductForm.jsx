@@ -6,7 +6,7 @@ const ProductForm =()=>{
     const [ProductName, setProduct]= useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [description , setdescription] = useState('');
+    const [Description , setdescription] = useState('');
     const [error , setError] = useState('');
 
     
@@ -14,7 +14,7 @@ const ProductForm =()=>{
     const handleSubmit= async(e)=>{
         e.preventDefault();
 
-        const product= {ProductName, price, quantity, description }
+        const product= {ProductName, price, quantity, Description }
         const response=await fetch(`http://localhost:5001/api/products`, {
             method: 'POST',
             body: JSON.stringify(product),
@@ -65,7 +65,7 @@ const ProductForm =()=>{
             <input 
                 type="text"
                 onChange={(e)=>{setdescription(e.target.value) }}
-                value={description} />
+                value={Description} />
 
             <button>Add Product</button>
             {error && <div className='error'>{error}</div>}

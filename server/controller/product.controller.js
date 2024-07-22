@@ -1,4 +1,4 @@
-const { default: Product } = require('../../client/src/pages/Product');
+
 const Product=require('../model/ProductModel');
 const mongoose=require('mongoose');
 
@@ -52,7 +52,7 @@ const updateProduct= async(req, res)=>{
 
     }
 
-    const Product=await Product.findByIdAndUpdate({_id: id},{
+    const product=await Product.findByIdAndUpdate({_id: id},{
        ...req.body
     })
 

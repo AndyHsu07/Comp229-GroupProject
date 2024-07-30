@@ -7,8 +7,8 @@ const hasAuthorization=require('../middleware/hasAuthorization');
 
 
 router.route('/api/users')
-    .get(requireSignin)
-    .get(hasAuthorization)
+    // .get(requireSignin)
+    // .get(hasAuthorization)
     .get(userCtrl.getAllUsers)
 
 router.route('/api/users/:id')
@@ -17,8 +17,8 @@ router.route('/api/users/:id')
     .get(userCtrl.getUser)
 
 router.route('/api/users/:id')
-    .get(requireSignin)
-    .get(hasAuthorization)
+    // .get(requireSignin)
+    // .get(hasAuthorization)
     .patch(userCtrl.updateUser)
 
 

@@ -5,7 +5,9 @@ const mongoose=require('mongoose');
 
 //get all users
 const getAllUsers= async(req,res)=>{
+    
     const users=await User.find({});
+    // console.log(users);
     return res.status(200).json(users);
 }
 
@@ -38,7 +40,7 @@ const updateUser= async(req, res)=>{
 
     const user=await User.findByIdAndUpdate({_id: id},{
        ...req.body
-    })
+    },{new: true})
 
     res.status(200).json({message: "Update successfully"});
 }

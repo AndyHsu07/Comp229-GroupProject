@@ -72,7 +72,7 @@ const deleteProduct = async( req,res )=>{
         return res.status(404).json({error: 'Product not found'})
     }
 
-    res.status(200).json({message: "The product is delted successfully"})
+    res.status(200).json({message: "The product is deleted successfully"})
 }
 
 

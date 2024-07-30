@@ -1,6 +1,6 @@
 const config={
     PORT: 5001,
-    MONGO_URL: "mongodb://127.0.0.1:27017/Gaming",
+    MONGO_URL: "mongodb://127.0.0.1:27017/GameOver",
     jwtSecret: "123"
 }
 

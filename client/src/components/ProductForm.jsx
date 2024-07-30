@@ -40,28 +40,28 @@ const ProductForm =()=>{
     }
 
     return (
-        <form className="create" onSubmit={handleSubmit}>
-            <h3>Add a New Product</h3>
+        <form className="productform" onSubmit={handleSubmit}>
+            <h3>New Product</h3>
 
-            <label>Product Name:</label>
+            <label>* Product Name:</label>
             <input 
                 type="text"
                 onChange={(e)=>{setProduct(e.target.value) }}
                 value={ProductName} />
             
-            <label>Price:</label>
+            <label>* Price:</label>
             <input 
                 type="number"
                 onChange={(e)=>{setPrice(e.target.value) }}
                 value={price} />
 
-            <label>Quantity:</label>
+            <label>* Quantity:</label>
             <input 
                 type="number"
                 onChange={(e)=>{setQuantity(e.target.value) }}
                 value={quantity} />
             
-            <label>Description:</label>
+            <label>Description: </label>
             <input 
                 type="text"
                 onChange={(e)=>{setdescription(e.target.value) }}

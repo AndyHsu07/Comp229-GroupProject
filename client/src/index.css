@@ -4,24 +4,85 @@
 /* layout */
 :root {
   --primary: #1aac83;
-  --error: #e7195a;
+  --error: #c70c47;
+  --element: #bcd3cc;
+  --title: #4b524e;;
 }
 body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
 }
+
+input{
+  font-size: 1.1em;
+
+}
+
+/* Navigator */
 header {
-  background: #fff;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  /* background-color: #f0f0f0; */
+  background-color: #5faa95;
+  border-bottom: 1px solid #ccc;
+  
+}
+header h1{
+  color: var(--title);
+  padding: 0 10px;
 }
 header .container {
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px 20px;
+  font-size: 10px;
+  margin: 0 10px;
+  margin-top: 20px;
+  padding: 5px 5px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: right;
+  justify-content: space-around;
+  
 }
+
+.link{
+  padding: 0 20px;
+  
+}
+
+
+/* Login */
+.login-container{
+  background-color: #bcd3cc;
+ 
+  border-radius: 10px;
+  border: 2px none;
+  margin: 50px auto;
+  width: 40%;
+  height: 450px;
+  text-align: center;
+}
+
+.login-container p{
+  padding: 30px 0;
+  color: #496356;
+  font-size: x-large;
+  font-weight: bold;
+ 
+}
+
+.login-container input{
+  margin: 30px auto;
+  padding :20px;
+}
+
+.login-container button{
+  margin: 10px 30px ;
+}
+
+
 header a {
   color: #333;
   text-decoration: none;
@@ -30,6 +91,41 @@ header a {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
+}
+
+div.error {
+  padding: 10px;
+  color: var(--error);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+/* signup */
+.signup-container{
+  background-color: #bcd3cc;
+  border-radius: 10px;
+  border: 2px none;
+  margin: 50px auto;
+  width: 40%;
+  height: 550px;
+  text-align: center;
+}
+
+.signup-container p{
+  padding: 30px 0;
+  color: #496356;
+  font-size: x-large;
+  font-weight: bold;
+ 
+}
+
+.signup-container input{
+  margin: 30px auto;
+  padding :20px;
+}
+
+.signup-container button{
+  margin: 10px 30px ;
 }
 
 
@@ -43,9 +139,9 @@ header a {
 .product-details {
   background: #fff;
   border-radius: 4px;
-  margin: 20px auto;
+  margin: 20px 20px;
   padding: 20px;
-  position: relative;
+  /* position: relative; */
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
 .product-details button{
@@ -64,7 +160,7 @@ header a {
   color: var(--primary);
 }
 .product-details p {
-  margin: 0;
+  margin: 5px 0;
   font-size: 0.9em;
   color: #555;
 }
@@ -80,19 +176,32 @@ header a {
 }
 
 /* new product form */
-label, input {
-  display: block;
+.productform{
+  height: 650px;
+  margin: 30px 20px;
+  padding: 0 50px;
+  background-color: var(--element);
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
-input {
+.productform h3{
+  text-align: center;
+  color: var(--title);
+}
+.productform label, input {
+  text-align: left;
+  display: block;
+  margin: 10px auto;
+}
+.productform input {
   padding: 10px;
-  margin-top: 10px;
   margin-bottom: 20px;
-  margin-left: 20px;
-  width: 250px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 form button {
   background: var(--primary);
   border: 0;
@@ -103,11 +212,69 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
-div.error {
-  padding: 10px;
-  background: #ffefef;
-  border: 1px solid var(--error);
-  color: var(--error);
+
+
+/* All users */
+.allUser-container{
+  background: #fff;
   border-radius: 4px;
-  margin: 20px 0;
+  display: flex;
+  margin: 0 30px;
+  padding: 10px 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.allUser-container .link{
+  
+  cursor: pointer;
+  margin-top: 15px;
+  color: #333;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+.allUser-container .link:hover{
+  background-color: #58b49a;
+  border-radius: 20px;
+}
+
+/* Profile */
+.Profile-container{
+  /* width: 60%;
+  height: 60vh;
+  text-align: center;
+  margin: 50px auto;
+  border: 1px solid; */
+
+  background-color: #bcd3cc;
+  border-radius: 10px;
+  border: 2px none;
+  margin: 50px auto;
+  width: 40%;
+  height: 500px;
+  text-align: center;
+}
+
+.Profile-container h1{
+  padding-top: 40px ;
+}
+.Profile-container label{
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+.Profile-container input{
+  display: inline;
+  padding: 5px 10px;
+  margin-top: 40px ;
+}
+
+.Profile-container button{
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  margin: 30px 30px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -7,10 +7,19 @@ const ProductDetail = ({product}) =>{
       
       const response=await fetch(`http://localhost:5001/api/products/${product._id}`, {
         method: 'DELETE',
+        // credentials: 'include', // Include cookies
+       
     })
-
-      const json=await response.json()
-
+      console.log(response);
+      try{
+         const json=await response.json()
+      }
+      catch(error){
+        console.log(error);
+      }
+      // return response.json();
+      
+      
       
     }
 

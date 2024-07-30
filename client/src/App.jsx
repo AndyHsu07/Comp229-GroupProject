@@ -10,7 +10,6 @@ import Navbar from './components/Navbar';
 import Signout from '../user/Signout';
 import AllUsers from './pages/getAllUsers';
 import Profile from './pages/profile';
-import {useSelector, Provider} from 'react-redux';
 
 
 function App() {
@@ -19,32 +18,38 @@ function App() {
   return (
    
 
-    <div className="App">
+    <div >
      
       <BrowserRouter>
-       <Navbar/>
+      
         <div className="Pages">
+        
+        <div>
           <Routes>
               {/* Private */}
-              <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-              <Route path="/api/users" element={<PrivateRoute><AllUsers /></PrivateRoute>} />
-              <Route path="/products" element={<PrivateRoute><Product /></PrivateRoute>} />
+              <Route path="/" element={<PrivateRoute><Navbar /><Home /></PrivateRoute>} />
+              <Route path="/api/users" element={<PrivateRoute><Navbar /><AllUsers /></PrivateRoute>} />
+              <Route path="/products" element={<PrivateRoute><Navbar /><Product /></PrivateRoute>} />
               
-              <Route path="/api/users/:id" element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path="/api/users/:id" element={<PrivateRoute><Navbar /><Profile /></PrivateRoute>} />
 
-              <Route path="/login" element={<Login />}/>
-              <Route path="/singout" element={<Signout />}/>
+              <Route path="/login" element={<><Navbar /><Login /></>}/>
+              <Route path="/singout" element={<><Navbar /><Signout /></>}/>
               {/* <Route path="/users" elements={<Users />} /> */}
               
-              <Route path="/signup" element={<Signup />}/>
+              <Route path="/signup" element={<><Navbar /><Signup /></>}/>
               
           </Routes>
+          </div>
         </div>
       </BrowserRouter>
 
-    </div>
-    
+     </div>
+
+
   )
 }
 
 export default App
+
+

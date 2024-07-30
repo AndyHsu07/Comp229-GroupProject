@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Navigate, useLocation } from 'react-router-dom';
 import auth from '../auth/auth-helper';
 import Login from '../user/Login'
+import Navbar from '../src/components/Navbar';
+
 
 const PrivateRoute= ({children}) =>{
     const location = useLocation();
@@ -10,7 +12,13 @@ const PrivateRoute= ({children}) =>{
   
     return children;
   } else{
-    return <Navigate to="/login" replace />;
+    return (
+      <>
+      
+      <Navigate to="/login" replace />;
+      </>
+    )
+    
   }
    
   

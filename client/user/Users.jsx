@@ -31,6 +31,7 @@ const Users = ({user})=>{
         <div className="allUser-container">
             <FontAwesomeIcon icon={faUser} style={{ marginRight: '20px',marginTop: '20px' }} />
             <Link className='link' to={"/api/users/"+user._id}>{user.name}</Link>
+        
         </div>
     )
 

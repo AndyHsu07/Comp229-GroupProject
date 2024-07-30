@@ -45,5 +45,22 @@ const updateUser= async(req, res)=>{
     res.status(200).json({message: "Update successfully"});
 }
 
+//delete user
+const deleteUser= async(req,res)=>{
+    const {id}= req.params;
 
-module.exports={getAllUsers, getUser,updateUser};
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'User not found'})
+
+    }
+
+    const user=await User.findByIdAndDelete({_id: id},{
+       ...req.body
+    },{new: true})
+
+    res.status(200).json({message: "Delete successfully"});
+
+}
+
+
+module.exports={getAllUsers, getUser,updateUser, deleteUser};

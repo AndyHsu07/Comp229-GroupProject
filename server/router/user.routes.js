@@ -12,15 +12,18 @@ router.route('/api/users')
     .get(userCtrl.getAllUsers)
 
 router.route('/api/users/:id')
-    .get(requireSignin)
-    .get(hasAuthorization)
+    // .get(requireSignin)
+    // .get(hasAuthorization)
     .get(userCtrl.getUser)
 
 router.route('/api/users/:id')
-    // .get(requireSignin)
-    // .get(hasAuthorization)
+    .get(requireSignin)
+    .get(hasAuthorization)
     .patch(userCtrl.updateUser)
 
-
+router.route('/api/users/:id')
+    .get(requireSignin)
+    .get(hasAuthorization)
+    .delete(userCtrl.deleteUser)
 
 module.exports=router;

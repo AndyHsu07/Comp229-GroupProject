@@ -7,11 +7,10 @@ import {useSelector,useDispatch} from 'react-redux';
 
 
 
-const Login= ()=>{
+const Login= (props)=>{
+
 
     
-
-
     const [email, setEmail] = useState('')
     const [password, setPwd] = useState('')
     const[error, setError]= useState('');
@@ -49,6 +48,16 @@ const Login= ()=>{
 
     }
 
+    // const {from} = props.location.state || {
+    //     from: {
+    //       pathname: '/'
+    //     }
+    //   }
+    //   const {redirectToReferrer} = values
+    //   if (redirectToReferrer) {
+    //       return (<Redirect to={from}/>)
+    //   }
+
     return(
         <div>
         
@@ -65,7 +74,7 @@ const Login= ()=>{
                             onChange={(e)=>setPwd(e.target.value)}
                             value={password}/>
                     
-                    <button onClick={()=> {dispatch(login()) }}>Log in</button>
+                    <button >Log in</button>
                     <Link to="/signup"><button>Sign up</button></Link>
                     
                     {error && <div className="error">{error}</div>}
@@ -76,3 +85,5 @@ const Login= ()=>{
 }
 
 export default Login;
+
+

@@ -10,12 +10,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const Singup=()=>{
+
+    const navigate=useNavigate()
+
     const [email,setEmail]= useState()
     const [name, setName] = useState()
     const [password, setPwd]= useState()
     const [error , setError] = useState('');
     const [open, setOpen] = useState(false);
-    const Navigate = useNavigate()
+   
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
@@ -47,7 +50,11 @@ const Singup=()=>{
 
     }
 
-    
+        const handleSignIn=()=>{
+            handleClose();
+            navigate("/login");
+        }
+
       const handleClose = () => {
         setOpen(false);
       };
@@ -72,11 +79,10 @@ const Singup=()=>{
                     <DialogContentText>New User successfully created</DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Link to="/login">
-                        <Button onClick={handleClose}>
+                        <Button onClick={handleSignIn}>
                         Sign In
                         </Button>
-                    </Link>
+                    
                 </DialogActions>
              </Dialog>
              

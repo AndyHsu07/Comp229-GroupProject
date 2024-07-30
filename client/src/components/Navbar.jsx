@@ -1,33 +1,51 @@
 import {Link} from 'react-router-dom';
 import Signout from '../../user/Signout';
-import { useSelector,useDispatch } from 'react-redux';
 import auth from '../../auth/auth-helper';
-import { jwtDecode } from 'jwt-decode'
 
+import { useEffect } from 'react';
 
-const Navbar= ()=>{
+function Navbar() {
     
-    
+    useEffect(() => {
+        console.log('Navbar rendered');
+      }, []);
     
     return(
         <header >
                 <Link to="/"> <img src="../../public/logo.png" alt="" height="100px"/> </Link>
             
             <div className="container">
-                {auth.isAuthenticated() &&(<span>
-                <Link to={"/api/users/" + auth.isAuthenticated().user._id}><h1>Profile</h1></Link>
-                </span>
-                )
-                }
-                {/* <Link to="/api/users/:id"><h1>My Profile</h1></Link> */}
-                <Link to="/api/users"><h1>User List</h1></Link>
-                <Link to="/products"> <h1>Products</h1></Link>
-                <Link to="/singout"><h1>Sign out</h1></Link>
+                        {!auth.isAuthenticated() && (
+                            <span>
+                            <Link to="/login"><button>Log in</button></Link>
+                             <Link to="/signup"><button >Sign Up</button></Link>
+                             
+                            </span>
+                        ) 
+                        }
+
+   
                 
+                
+                 {
+                auth.isAuthenticated() && (<span>
+                <Link to={"/api/users/" + auth.isAuthenticated().user._id}>
+                    <button>My Profile</button>
+                </Link>
+                {/* <Link to="/api/users/:id"><h1>My Profile</h1></Link> */}
+                <Link to="/api/users"><button>User list</button></Link>
+                <Link to="/products"> <button>Products</button></Link>
+                <Link to="/singout"><button>Sign out</button></Link>
+                 </span>)
+             }
+
+
             </div>
             
         </header>
+
     )
 }
 
 export default Navbar;
+

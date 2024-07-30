@@ -1,15 +1,24 @@
 import react , {useState, useEffect} from 'react';
 import auth from '../../auth/auth-helper';
 import { jwtDecode } from 'jwt-decode'
-import {read, update} from './api-user'
-import { useParams } from 'react-router-dom';
+import {read, update, remove} from './api-user'
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link} from 'react-router-dom'
 
-import { Navigate, useNavigation } from 'react-router-dom';
+import {  useNavigation } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 const Profile= ({match})=>{
     
+    const navigate= useNavigate();
+
     const [user, setUser]= useState({
         name: '',
         email: '',
@@ -19,7 +28,7 @@ const Profile= ({match})=>{
     const [redirectToSignin, setRedirectToSignin] = useState(false)
     const jwt = auth.isAuthenticated() 
     const { id } = useParams();
-    
+    const [open, setOpen]=useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target; 
         
@@ -52,7 +61,7 @@ const Profile= ({match})=>{
         
 
 
-    const handleSubmit=async(e)=>{
+    const handleUpdate=async(e)=>{
         e.preventDefault()
         
         
@@ -66,11 +75,40 @@ const Profile= ({match})=>{
 
 
     }
+
+    const handledelete=async(e)=>{
+        e.preventDefault()
+        
+        
+        await remove( id,{t: jwt.token},user)
+            .then((data)=>{
+                if(data){
+                    setUser({
+                        name: '',
+                        email: '',
+                    })
+                    setMsg("Delete successfully!");
+                    setOpen(true);
+                    
+                }
+        })
+
+
+    }
+
+    const handleSignIn=()=>{
+        handleClose();
+        navigate("/api/users");
+    }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
             
     return (<>
     <div className="Profile-container">
-        <form onSubmit={handleSubmit}>
-        
+        {/* <form> */}
+      
         <h1>My Profile</h1>
         <div>
             <label>Name:</label>
@@ -88,9 +126,24 @@ const Profile= ({match})=>{
                 value={user.email}
                 />
         </div>
-        <button>Modify</button>
+        <button onClick={handleUpdate}>Modify</button>
+        <button onClick={handledelete}>delete</button>
         {msg && <div className="error">{msg}</div>}
-        </form>
+        
+        <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Account deleted</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText>Delete successfully!</DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleSignIn}>
+                            Back to user List
+                            </Button>
+                        
+                        </DialogActions>
+                    </Dialog>
+
+
     </div>
     </>)
 

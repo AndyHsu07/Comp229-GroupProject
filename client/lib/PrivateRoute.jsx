@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Navigate, useLocation } from 'react-router-dom';
 import auth from '../auth/auth-helper';
-import Login from '../user/Login'
+import Login from '../src/user/Login'
 import Navbar from '../src/components/Navbar';
 
 

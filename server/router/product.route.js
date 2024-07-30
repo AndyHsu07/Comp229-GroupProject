@@ -5,20 +5,20 @@ const requireSignin=require('../middleware/requireSignin');
 const hasAuthorization=require('../middleware/hasAuthorization');
 
 
-router.route('/:id')
+router.route('/api/product/:id')
     .get(productCtrl.getProduct)
     .delete(productCtrl.deleteProduct);
 
-router.route('/')
+router.route('/api/products')
     .post(productCtrl.createProduct);
 
-router.route('/')
+router.route('/api/products')
     .get(productCtrl.getAllProducts);
 
 
 
 
-router.route('/:id')
+router.route('/api/product/:id')
     .patch(productCtrl.updateProduct);
 
 module.exports=router;

@@ -1,10 +1,7 @@
 import react , {useState, useEffect} from 'react';
-import auth from '../../auth/auth-helper';
-import { jwtDecode } from 'jwt-decode'
-import {read, update, remove} from './api-user'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Link} from 'react-router-dom'
-
+import {read, update, remove} from './api-product'
+import auth from '../../auth/auth-helper';
 
 
 import Button from '@mui/material/Button';
@@ -15,31 +12,33 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const Profile= ({match})=>{
-    
+const EditProduct=({match})=>{
+
     const navigate= useNavigate();
-
-    const [user, setUser]= useState({
-        name: "",
-        email: "",
-    });
-
-    const [msg ,setMsg]=useState('');
-    const [redirectToSignin, setRedirectToSignin] = useState(false)
-    const jwt = auth.isAuthenticated() 
+    
     const { id } = useParams();
+    // console.log(id);
+    const [product, setProduct]= useState({
+        ProductName: "",
+        quantity: "",
+        price: "",
+        Description: "",
+    });
+    const [msg ,setMsg]=useState('');
     const [open, setOpen]=useState(false);
+    const jwt = auth.isAuthenticated() 
+    
     const handleChange = (e) => {
         const { name, value } = e.target; 
         
-        setUser((prevUser) => ({
+        setProduct((prevUser) => ({
           ...prevUser, 
           [name]: value, 
         }));
-        console.log(user);
+        // console.log(product);
       };
-    
-    useEffect(() => {
+
+      useEffect(() => {
         
 
         const abortController=new AbortController()
@@ -50,7 +49,7 @@ const Profile= ({match})=>{
                 if(data && data.error){
                     setRedirectToSignin(true)
                 }else{
-                    setUser(data)
+                    setProduct(data)
                 }
         })
             // return function cleanup(){
@@ -58,38 +57,17 @@ const Profile= ({match})=>{
             // }
 
              },[id])
-        
 
-
-    const handleUpdate=async(e)=>{
-        e.preventDefault()
+    const handleUpdate=async()=>{
         
         
-        await update( id,{t: jwt.token},user)
+        
+        await update( id,{t: jwt.token},product)
             .then((data)=>{
                 if(data){
-                    setUser(data)
-                    setMsg("Updated successfully!");
-                }
-        })
-
-
-    }
-
-    const handledelete=async(e)=>{
-        e.preventDefault()
-        
-        
-        await remove( id,{t: jwt.token},user)
-            .then((data)=>{
-                if(data){
-                    setUser({
-                        name: '',
-                        email: '',
-                    })
-                    setMsg("Delete successfully!");
+                    setProduct(data)
                     setOpen(true);
-                    
+                    setMsg("Updated successfully!");
                 }
         })
 
@@ -98,65 +76,67 @@ const Profile= ({match})=>{
 
     const handleSignIn=()=>{
         handleClose();
-        navigate("/api/users");
+        navigate("/products");
     }
 
     const handleClose = () => {
-    setOpen(false);
+        setOpen(false);
      };
-            
-    return (<>
-    <div className="Profile-container">
-        {/* <form> */}
+
+    return(<>
+        <div className="EditProduct-container">
       
-        <h1>My Profile</h1>
+        <h1>Edit the Product</h1>
         <div>
-            <label>Name:</label>
+            <label>Product Name:</label>
             <input type="text"
                     name='name' 
                     onChange={handleChange}
-                    value={user.name}
+                    value={product.ProductName}
                     />
         </div>
         <div>
-        <label>Email:</label>
+        <label>Price:</label>
         <input type="text"
-                name='email' 
+                name='price' 
                 onChange={handleChange}
-                value={user.email}
+                value={product.price}
+                />
+        </div>
+        <div>
+        <label>Quantity:</label>
+        <input type="text"
+                name='quantity' 
+                onChange={handleChange}
+                value={product.quantity}
+                />
+        </div>
+
+        <div>
+        <label>Description:</label>
+        <input type="text"
+                name='Description' 
+                onChange={handleChange}
+                value={product.Description}
                 />
         </div>
         <button onClick={handleUpdate}>Modify</button>
-        <button onClick={handledelete}>delete</button>
-        {msg && <div className="error">{msg}</div>}
-        
+       
         <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Account deleted</DialogTitle>
+                        <DialogTitle>Product Updated</DialogTitle>
                         <DialogContent>
-                        <DialogContentText>Delete successfully!</DialogContentText>
+                        <DialogContentText>Updated successfully!</DialogContentText>
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleSignIn}>
-                            Back to user List
+                            Back to Prodcuts
                             </Button>
                         
                         </DialogActions>
                     </Dialog>
 
-
-    </div>
+        </div>
     </>)
-
-   
-
-
 }
 
-
-
-export default Profile;
-
-
-
-
-
+export default EditProduct;

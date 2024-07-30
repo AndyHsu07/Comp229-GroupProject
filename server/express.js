@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 
 app.use("/",authRoute);
 app.use("/", userRoute);
-app.use("/api/products", productRoute);
+app.use("/", productRoute);
 app.use("/",(req,res,next)=>{
     res.send("Home Page");
 })

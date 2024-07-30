@@ -1,5 +1,5 @@
 import react from 'react';
-import Users from "../../user/Users";
+import Users from "../user/Users";
 import auth from '../../auth/auth-helper';
 import {useState, useEffect} from 'react';
 

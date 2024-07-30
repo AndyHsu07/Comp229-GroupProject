@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { Link } from 'react-router-dom';
 
 const ProductDetail = ({product}) =>{
 
@@ -29,6 +29,8 @@ const ProductDetail = ({product}) =>{
          <p><strong>Price : ${product.price}</strong></p>
          <p><strong>Quantity: {product.quantity}</strong></p>
          <p><strong>Decription: {product.Description}</strong></p>
+         {/* <Link to="/api/products/:id"><button>Edit</button></Link> */}
+         <Link to={"/api/product/"+product._id}><button>Edit</button></Link>
          <button onClick={handleClick}>Delete</button>
        </div>
     )

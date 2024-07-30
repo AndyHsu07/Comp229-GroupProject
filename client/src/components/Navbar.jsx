@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import Signout from '../../user/Signout';
+import Signout from '../user/Signout';
 import auth from '../../auth/auth-helper';
 
 import { useEffect } from 'react';

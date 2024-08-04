@@ -16,8 +16,6 @@ router.route('/api/products')
     .get(productCtrl.getAllProducts);
 
 
-
-
 router.route('/api/product/:id')
     .patch(productCtrl.updateProduct);
 

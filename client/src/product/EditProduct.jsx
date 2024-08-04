@@ -90,7 +90,7 @@ const EditProduct=({match})=>{
         <div>
             <label>Product Name:</label>
             <input type="text"
-                    name='name' 
+                    name='ProductName' 
                     onChange={handleChange}
                     value={product.ProductName}
                     />

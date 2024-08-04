@@ -5,7 +5,7 @@ const ProductDetail = ({product}) =>{
 
     const handleClick= async()=>{
       
-      const response=await fetch(`http://localhost:5001/api/products/${product._id}`, {
+      const response=await fetch(`http://localhost:5001/api/product/${product._id}`, {
         method: 'DELETE',
         // credentials: 'include', // Include cookies
        
